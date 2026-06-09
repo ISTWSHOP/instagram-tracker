@@ -11,27 +11,32 @@
 
   .header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 20px 24px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
   .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .header p { font-size: 13px; color: #666; margin-bottom: 16px; }
+  .header p { font-size: 13px; color: #666; margin-bottom: 14px; }
 
-  .filters { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 0; }
-  .filter-btn { padding: 7px 14px; border-radius: 20px; border: 1.5px solid #e0e0e0; background: #fff; cursor: pointer; font-size: 13px; font-weight: 500; color: #444; transition: all 0.15s; white-space: nowrap; margin-bottom: 16px; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn { padding: 7px 14px; border-radius: 20px; border: 1.5px solid #e0e0e0; background: #fff; cursor: pointer; font-size: 13px; font-weight: 500; color: #444; transition: all 0.15s; white-space: nowrap; margin-bottom: 14px; }
   .filter-btn:hover { border-color: #aaa; }
   .filter-btn.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
   .filter-btn .count { background: rgba(255,255,255,0.25); border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; }
   .filter-btn:not(.active) .count { background: #f0f0f0; color: #888; }
 
-  .search-bar { padding: 16px 24px 0; }
+  .search-bar { padding: 14px 24px 0; }
   .search-bar input { width: 100%; padding: 9px 14px; border-radius: 10px; border: 1.5px solid #e0e0e0; font-size: 14px; outline: none; background: #fff; }
   .search-bar input:focus { border-color: #999; }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; padding: 20px 24px; }
+  .summary { display: flex; gap: 10px; padding: 14px 24px 0; flex-wrap: wrap; }
+  .summary-chip { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 7px 12px; font-size: 12px; color: #555; }
+  .summary-chip strong { color: #1d1d1f; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; padding: 18px 24px; }
 
   .card { background: #fff; border-radius: 14px; border: 1px solid #e8e8e8; overflow: hidden; transition: box-shadow 0.2s; }
   .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   .card.hidden { display: none; }
 
-  .card-header { padding: 14px 16px 10px; display: flex; align-items: flex-start; gap: 10px; }
-  .cat-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+  .card-top { padding: 14px 16px 10px; }
+  .badges-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .cat-badge { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
   .cat-ia { background: #e8f0fe; color: #1a73e8; }
   .cat-3d { background: #fce8d5; color: #e8610a; }
   .cat-parques { background: #e6f4ea; color: #1e8e3e; }
@@ -39,469 +44,430 @@
   .cat-docs { background: #f3e8fd; color: #7b1fa2; }
   .cat-na { background: #f5f5f5; color: #999; }
 
-  .card-title { font-size: 14px; font-weight: 600; line-height: 1.4; flex: 1; }
-  .card-body { padding: 0 16px 14px; }
-  .account { font-size: 12px; color: #1a73e8; font-weight: 500; margin-bottom: 6px; text-decoration: none; display: inline-block; }
-  .account:hover { text-decoration: underline; }
-  .descricao { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 10px; }
-  .cta-box { background: #f9f9f9; border-left: 3px solid #1d1d1f; border-radius: 0 8px 8px 0; padding: 7px 10px; margin-bottom: 10px; font-size: 12px; color: #555; font-style: italic; }
-
-  .stats { display: flex; gap: 14px; margin-bottom: 10px; }
-  .stat { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #666; }
-  .stat .num { font-weight: 600; color: #1d1d1f; }
-
-  .expand-btn { width: 100%; background: none; border: none; cursor: pointer; font-size: 12px; color: #1a73e8; padding: 6px 0 2px; text-align: left; font-weight: 500; display: flex; align-items: center; gap: 4px; }
-  .expand-btn:hover { color: #0d47a1; }
-  .expand-btn .arrow { transition: transform 0.2s; font-size: 10px; }
-  .expand-btn.open .arrow { transform: rotate(90deg); }
-
-  .implementation { display: none; margin-top: 10px; background: #f8f9ff; border-radius: 10px; padding: 12px; border: 1px solid #e0e8ff; }
-  .implementation.show { display: block; }
-  .impl-section { margin-bottom: 10px; }
-  .impl-section:last-child { margin-bottom: 0; }
-  .impl-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .impl-text { font-size: 12px; color: #333; line-height: 1.6; }
-  .impl-steps { list-style: none; counter-reset: steps; }
-  .impl-steps li { counter-increment: steps; padding: 3px 0 3px 22px; position: relative; font-size: 12px; color: #333; line-height: 1.5; }
-  .impl-steps li::before { content: counter(steps); position: absolute; left: 0; width: 16px; height: 16px; background: #1a73e8; color: #fff; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; top: 4px; }
-  .alt-box { background: #fff8e1; border-radius: 8px; padding: 8px 10px; font-size: 12px; color: #555; border: 1px solid #ffe082; }
-
-  .link-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #1a73e8; text-decoration: none; margin-top: 8px; padding: 4px 10px; border: 1px solid #c5d9f7; border-radius: 8px; font-weight: 500; }
-  .link-btn:hover { background: #e8f0fe; }
-
-  .utilidade-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  .util-tag { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
   .util-alta { background: #e6f4ea; color: #1e8e3e; }
   .util-media { background: #fef8e1; color: #b06e00; }
   .util-baixa { background: #f5f5f5; color: #999; }
   .util-na { background: #fce8e6; color: #c5221f; }
 
-  .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 0; color: #999; font-size: 15px; }
+  .ver-tag { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .ver-alta    { background: #e6f4ea; color: #1a7a3c; }
+  .ver-media   { background: #fef8e1; color: #8a5700; }
+  .ver-baixa   { background: #fce8e6; color: #c5221f; }
+  .ver-enganoso{ background: #c5221f; color: #fff; }
+  .ver-na      { background: #f0f0f0; color: #aaa; }
 
-  .summary { display: flex; gap: 10px; padding: 12px 24px; flex-wrap: wrap; }
-  .summary-chip { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 8px 14px; font-size: 12px; color: #555; }
-  .summary-chip strong { color: #1d1d1f; }
+  .card-title { font-size: 14px; font-weight: 700; line-height: 1.4; }
+  .card-body { padding: 0 16px 14px; }
+  .account { font-size: 12px; color: #1a73e8; font-weight: 500; margin-bottom: 6px; text-decoration: none; display: inline-block; }
+  .account:hover { text-decoration: underline; }
+  .descricao { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 8px; }
+  .cta-box { background: #f9f9f9; border-left: 3px solid #1d1d1f; border-radius: 0 8px 8px 0; padding: 6px 10px; margin-bottom: 8px; font-size: 12px; color: #555; font-style: italic; }
+
+  .stats { display: flex; gap: 14px; margin-bottom: 10px; }
+  .stat { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #666; }
+  .stat .num { font-weight: 600; color: #1d1d1f; }
+
+  .expand-btn { width: 100%; background: none; border: none; cursor: pointer; font-size: 12px; color: #1a73e8; padding: 6px 0 2px; text-align: left; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+  .expand-btn:hover { color: #0d47a1; }
+  .arrow { transition: transform 0.2s; display: inline-block; font-size: 10px; }
+  .expand-btn.open .arrow { transform: rotate(90deg); }
+
+  .details { display: none; margin-top: 10px; }
+  .details.show { display: block; }
+
+  .det-section { background: #f8f9ff; border-radius: 10px; padding: 11px 12px; margin-bottom: 8px; border: 1px solid #e8eeff; }
+  .det-section.certo  { background: #f0faf3; border-color: #b7dfc5; }
+  .det-section.errado { background: #fff5f5; border-color: #f5c0c0; }
+  .det-section.ver    { background: #fffbf0; border-color: #f0d980; }
+  .det-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .det-label.l-certo  { color: #1a7a3c; }
+  .det-label.l-errado { color: #c5221f; }
+  .det-label.l-ver    { color: #8a5700; }
+  .det-text { font-size: 12px; color: #333; line-height: 1.6; }
+
+  .impl-steps { list-style: none; counter-reset: steps; margin-top: 4px; }
+  .impl-steps li { counter-increment: steps; padding: 3px 0 3px 22px; position: relative; font-size: 12px; color: #333; line-height: 1.5; }
+  .impl-steps li::before { content: counter(steps); position: absolute; left: 0; width: 16px; height: 16px; background: #1a73e8; color: #fff; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; top: 4px; }
+
+  .alt-box { background: #fff8e1; border-radius: 8px; padding: 7px 10px; font-size: 12px; color: #555; border: 1px solid #ffe082; margin-top: 4px; }
+  .link-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #1a73e8; text-decoration: none; margin-top: 10px; padding: 4px 10px; border: 1px solid #c5d9f7; border-radius: 8px; font-weight: 500; }
+  .link-btn:hover { background: #e8f0fe; }
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 0; color: #999; font-size: 15px; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>📋 Instagram Links — Tracker</h1>
-  <p>Todos os links analisados, categorizados e com guia de implementação</p>
+  <p>Análise completa: veracidade, o que está certo/errado, como usar e passo a passo de implementação</p>
   <div class="filters" id="filters"></div>
 </div>
-
-<div class="search-bar">
-  <input type="text" id="search" placeholder="🔍  Buscar por conta, assunto, categoria..." oninput="renderCards()">
-</div>
-
+<div class="search-bar"><input type="text" id="search" placeholder="🔍  Buscar por conta, assunto, categoria..." oninput="renderCards()"></div>
 <div class="summary" id="summary"></div>
 <div class="grid" id="grid"></div>
 
 <script>
 const items = [
   {
-    conta: "@guivilas.ia",
-    link: "https://www.instagram.com/reel/DZQMJa4Odat/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Agente Claude para análise de M&A",
-    descricao: "Demonstração de como construir um agente Claude que avalia alvos de aquisição, pesquisa financeiros, benchmarks competitivos e rascunha memos de investimento.",
-    cta: "Comenta 'API' que eu te mando o guia",
-    likes: "1.159", comentarios: "1.199", shares: "21",
-    utilidade: "Alta",
-    uso: "Criar agentes Claude especializados em análise financeira e de negócios usando a API da Anthropic.",
-    passos: ["Criar conta e obter API key em console.anthropic.com", "Escolher modelo claude-opus-4-6 para raciocínio complexo", "Definir system prompt como 'Senior M&A analyst'", "Implementar tool_use para pesquisa web + análise financeira", "Usar Claude Agent SDK para fluxo multi-etapa"],
-    alternativas: "GPT-4o (OpenAI) ou Gemini 1.5 Pro para análise similar, mas Claude Opus se destaca em raciocínio analítico longo."
+    conta:"@guivilas.ia", link:"https://www.instagram.com/reel/DZQMJa4Odat/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Agente Claude para análise de M&A",
+    descricao:"Demonstração de como construir um agente Claude que avalia alvos de aquisição, pesquisa financeiros, benchmarks competitivos e rascunha memos de investimento.",
+    cta:"Comenta 'API' que eu te mando o guia",
+    likes:"1.159", comentarios:"1.199", shares:"21", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"Tecnicamente correto: Claude consegue executar esse fluxo de M&A com tool_use. O caso de uso (M&A analysis) é um dos pontos fortes de modelos de raciocínio longo como o Opus.",
+    errado:"A facilidade é subestimada — requer programação, API key paga e engenharia de prompts. Não é ponto-e-clique. O guia no direct pode ser superficial.",
+    uso:"Criar um agente Claude especializado em análise de negócios/M&A usando a API da Anthropic.",
+    passos:["Criar conta em console.anthropic.com e obter API key","Escolher claude-opus-4-6 para raciocínio analítico profundo","Definir system prompt detalhado: 'You are a senior M&A analyst...'","Implementar tool_use: web_search + financial_data APIs (ex: Alpha Vantage)","Usar Claude Agent SDK para encadear: pesquisa → análise → memo"],
+    alternativas:"GPT-4o com Code Interpreter para análise de planilhas; Perplexity para pesquisa de mercado. Mas Claude Opus supera em raciocínio analítico longo."
   },
   {
-    conta: "@gameroomtheater",
-    link: "https://www.instagram.com/stories/gameroomtheater/3914321932556792310/",
-    tipo: "Story",
-    categoria: "Lifestyle Tech",
-    titulo: "Story — Gameroom/Theater Tech",
-    descricao: "Conta @gameroomtheater (581K seguidores, 1.4M total): Tech & Automation para mancave/gameroom. Story expirada ou vídeo sem texto disponível.",
-    cta: "N/A — Story de vídeo",
-    likes: "—", comentarios: "—", shares: "—",
-    utilidade: "Baixa",
-    uso: "Referência de nicho: criador de conteúdo tech/DIY para gamers com automação residencial.",
-    passos: ["Seguir perfil para acompanhar conteúdo de automação residencial", "Verificar Highlights 'Gameroom/Theater' e 'CES 2025' para inspo técnica", "Analisar setup de automação para inspiração de projetos"],
-    alternativas: "YouTube canal do @gameroomtheater tem conteúdo mais completo que stories."
+    conta:"@gameroomtheater", link:"https://www.instagram.com/stories/gameroomtheater/3914321932556792310/", tipo:"Story",
+    categoria:"Lifestyle Tech", titulo:"Story — Gameroom/Theater Setup",
+    descricao:"Conta verificada com 581K seguidores (1.4M total). Nicho: Tech, Automação residencial e DIY para game rooms/home theaters. Story expirada — conteúdo visual.",
+    cta:"N/A — Story de vídeo",
+    likes:"—", comentarios:"—", shares:"—", utilidade:"Baixa",
+    veracidade:"N/A",
+    certo:"Perfil legítimo e bem estabelecido no nicho de home entertainment/tech.",
+    errado:"Stories expiram em 24h — sem conteúdo verificável. Para conteúdo duradouro, ver Highlights e Reels do perfil.",
+    uso:"Referência de nicho para automação residencial e setups de home theater.",
+    passos:["Seguir @gameroomtheater para conteúdo de automação","Ver Highlights 'Gameroom/Theater' e 'CES 2025'","Canal YouTube tem vídeos mais completos que stories"],
+    alternativas:"YouTube do @gameroomtheater e @the_hook_up para automação residencial com Home Assistant."
   },
   {
-    conta: "@allesinisgalli",
-    link: "https://www.instagram.com/stories/allesinisgalli/3914530469526599654/",
-    tipo: "Story",
-    categoria: "IA / Claude",
-    titulo: "Story — Alles Inisgalli (Claude for Small Business)",
-    descricao: "Criadora de conteúdo sobre IA. Story de vídeo sem texto disponível — ver reels desta conta para conteúdo completo.",
-    cta: "N/A — Story de vídeo",
-    likes: "—", comentarios: "—", shares: "—",
-    utilidade: "Baixa",
-    uso: "Ver reels desta conta (itens #5 e #15 da lista) para conteúdo mais rico.",
-    passos: ["Acessar perfil @allesinisgalli", "Ver Reels sobre Claude for Small Business e substituição de agência"],
-    alternativas: "Ver os outros reels desta mesma conta nesta lista."
+    conta:"@allesinisgalli", link:"https://www.instagram.com/stories/allesinisgalli/3914530469526599654/", tipo:"Story",
+    categoria:"IA / Claude", titulo:"Story — Alles Inisgalli (IA)",
+    descricao:"Criadora de conteúdo sobre IA e Claude. Story de vídeo sem texto disponível. Ver os reels desta conta para conteúdo completo (itens #5 e #14).",
+    cta:"N/A — Story de vídeo",
+    likes:"—", comentarios:"—", shares:"—", utilidade:"Baixa",
+    veracidade:"N/A",
+    certo:"Conta ativa e relevante no nicho de IA em PT. Ver reels desta conta nesta lista.",
+    errado:"Story expirada — sem conteúdo verificável.",
+    uso:"Seguir o perfil para atualizações de IA em português.",
+    passos:["Acessar @allesinisgalli","Ver reels sobre Claude for Small Business e substituição de agência (nesta lista)"],
+    alternativas:"Reels desta mesma conta são mais informativos que stories."
   },
   {
-    conta: "@rafa.grandi",
-    link: "https://www.instagram.com/reel/DYxUmDWzTJQ/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "MCP (Model Context Protocol) — Guia pelo Direct",
-    descricao: "Reel sobre MCP — protocolo que conecta agentes de IA a ferramentas externas (arquivos, APIs, bancos de dados). Alto engajamento: 7.2K comentários.",
-    cta: "Comenta 'MCP' que te mando o link pelo Direct",
-    likes: "3.208", comentarios: "7.225", shares: "36",
-    utilidade: "Alta",
-    uso: "Entender e implementar MCP para expandir capacidades de agentes Claude com ferramentas externas.",
-    passos: ["Ler documentação oficial: modelcontextprotocol.io", "Instalar MCP server existente (ex: filesystem, browser, GitHub)", "Configurar MCP no Claude Desktop ou via API", "Criar MCP server customizado com TypeScript ou Python SDK", "Testar conexão com ferramentas locais e APIs externas"],
-    alternativas: "Function Calling (OpenAI) é equivalente funcional, mas MCP é agnóstico de modelo e mais padronizado."
+    conta:"@rafa.grandi", link:"https://www.instagram.com/reel/DYxUmDWzTJQ/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"MCP (Model Context Protocol) — Guia pelo Direct",
+    descricao:"Reel explicando MCP — protocolo padrão para conectar agentes de IA a ferramentas externas. Engajamento excepcional: 7.2K comentários.",
+    cta:"Comenta 'MCP' que te mando o link pelo Direct",
+    likes:"3.208", comentarios:"7.225", shares:"36", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"MCP é real, open-source (Anthropic) e funciona exatamente como descrito. Já tem centenas de servidores MCP disponíveis. É de fato o padrão emergente para agentes de IA.",
+    errado:"A complexidade de implementar um MCP server do zero é maior do que parece num reel de 60s. Usar MCPs prontos é fácil; criar os seus requer conhecimento de TypeScript ou Python.",
+    uso:"Conectar Claude a qualquer ferramenta externa (GitHub, Notion, banco de dados, APIs) sem código customizado.",
+    passos:["Ler modelcontextprotocol.io para entender o protocolo","Instalar Claude Desktop (desktop.claude.ai)","Configurar MCPs prontos: editar ~/Library/Application Support/Claude/claude_desktop_config.json","Adicionar entry: {\"mcpServers\": {\"filesystem\": {\"command\": \"npx\", \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/Users/SEU_USUARIO\"]}}}","Para MCP customizado: usar SDK oficial em TypeScript ou Python"],
+    alternativas:"Function Calling (OpenAI) é equivalente mas proprietário. MCP é agnóstico de modelo — funciona com Claude, GPT, Gemini."
   },
   {
-    conta: "@allesinisgalli",
-    link: "https://www.instagram.com/reel/DYWsnhExPnG/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Claude for Small Business — Lançamento Anthropic",
-    descricao: "Notícia sobre o lançamento do Claude for Small Business pela Anthropic — plano específico para pequenas empresas com recursos de IA.",
-    cta: "N/A",
-    likes: "1.519", comentarios: "1.556", shares: "26",
-    utilidade: "Média",
-    uso: "Avaliar plano Claude for Small Business para uso empresarial com equipe.",
-    passos: ["Acessar claude.ai/pricing para comparar planos", "Testar Claude Pro ou Team antes do plano Business", "Configurar Projects para organizar contexto por cliente/projeto", "Explorar integração com ferramentas de trabalho via API"],
-    alternativas: "ChatGPT Team (OpenAI) e Gemini for Business são competidores diretos no segmento SMB."
+    conta:"@allesinisgalli", link:"https://www.instagram.com/reel/DYWsnhExPnG/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Claude for Small Business — Lançamento Anthropic",
+    descricao:"Notícia sobre plano da Anthropic específico para pequenas empresas. 1.5K curtidas, 1.5K comentários.",
+    cta:"N/A",
+    likes:"1.519", comentarios:"1.556", shares:"26", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"Anthropic lançou de fato planos Business/Teams voltados para empresas. Preço e funcionalidades são reais.",
+    errado:"'Claude for Small Business' pode ser nome coloquial — o produto oficial se chama Claude for Teams ou Business. Verificar nomenclatura atual em anthropic.com/pricing.",
+    uso:"Avaliar plano Team/Business para uso empresarial com contexto compartilhado entre membros da equipe.",
+    passos:["Acessar anthropic.com/pricing para comparar planos atuais","Testar Claude Pro antes de escalar para Team","Configurar Projects para manter contexto por cliente/projeto","Explorar integração com ferramentas via API para workflows automatizados"],
+    alternativas:"ChatGPT Team (OpenAI) e Gemini for Business. Para uso solo, Claude Pro é mais custo-eficiente."
   },
   {
-    conta: "@sf_studio3d",
-    link: "https://www.instagram.com/reel/DYXIyDDMLv5/",
-    tipo: "Reel",
-    categoria: "Impressão 3D",
-    titulo: "Impressão 3D — Objetos Inéditos via Purgas (Bambu Lab BP2S)",
-    descricao: "Técnica de criar objetos únicos usando 'purgas' (material descartado entre trocas de filamento) na impressora Bambu Lab BP2S.",
-    cta: "N/A",
-    likes: "8.056", comentarios: "90", shares: "88",
-    utilidade: "Média",
-    uso: "Técnica criativa para aproveitar material de purga e criar peças artísticas/decorativas.",
-    passos: ["Ter impressora Bambu Lab com AMS (sistema multifilamento)", "Ativar impressão multicolor com filamentos de cores variadas", "Configurar 'flush objects' para capturar purgas", "Experimentar diferentes combinações de materiais e cores", "Usar Bambu Studio para configurar o modelo de purga"],
-    alternativas: "Qualquer impressora com troca de filamento gera purgas — técnica aplicável com modificações em Prusa, Creality etc."
+    conta:"@sf_studio3d", link:"https://www.instagram.com/reel/DYXIyDDMLv5/", tipo:"Reel",
+    categoria:"Impressão 3D", titulo:"Impressão 3D — Objetos via Purgas (Bambu Lab BP2S)",
+    descricao:"Técnica criativa para criar objetos artísticos usando material de purga (flush) gerado durante trocas de filamento em impressoras multicolor.",
+    cta:"N/A",
+    likes:"8.056", comentarios:"90", shares:"88", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"Técnica real, documentada na comunidade Bambu Lab. Purgas são inevitáveis em impressão multicolor — aproveitar o material é legítimo e criativo.",
+    errado:"Nada significativo. É uma técnica de nicho — não funciona em todas as impressoras, apenas nas com AMS ou sistema de multi-material.",
+    uso:"Aproveitar material descartado de purgas para criar peças artísticas/decorativas únicas.",
+    passos:["Ter Bambu Lab com AMS (X1C, P1S ou A1 Combo)","Ativar 'flush into objects' no Bambu Studio (fatiador)","Criar um objeto simples como 'flush receptacle' para capturar purgas","Experimentar combinações de cores e materiais para efeitos únicos","Postar resultados no MakerWorld.com para feedback"],
+    alternativas:"Prusa MMU3 permite técnica similar. Para impressoras single-nozzle, não é aplicável."
   },
   {
-    conta: "@rafa.grandi",
-    link: "https://www.instagram.com/reel/DYCdnaEz_cq/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Claude Code — Passo a Passo de Instalação",
-    descricao: "Tutorial de instalação do Claude Code (CLI de IA para coding). Hashtags: #claude #ia #vibecoding. 5.8K curtidas, 6.3K comentários.",
-    cta: "Comenta 'Video' que eu te mando passo a passo de como instalar",
-    likes: "5.843", comentarios: "6.382", shares: "74",
-    utilidade: "Alta",
-    uso: "Instalar e usar Claude Code como assistente de desenvolvimento diretamente no terminal.",
-    passos: ["Ter Node.js 18+ instalado", "Rodar: npm install -g @anthropic-ai/claude-code", "Autenticar: claude (abre browser para login Anthropic)", "Navegar até um projeto: cd meu-projeto", "Iniciar sessão: claude e começar a dar tarefas em linguagem natural"],
-    alternativas: "GitHub Copilot, Cursor, Windsurf, Aider — mas Claude Code se diferencia por autonomia em tarefas complexas multi-arquivo."
+    conta:"@rafa.grandi", link:"https://www.instagram.com/reel/DYCdnaEz_cq/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Claude Code — Passo a Passo de Instalação",
+    descricao:"Tutorial de instalação do Claude Code (CLI de coding autônomo). Hashtags: #claude #ia #vibecoding. 5.8K curtidas, 6.3K comentários.",
+    cta:"Comenta 'Video' que eu te mando passo a passo de como instalar",
+    likes:"5.843", comentarios:"6.382", shares:"74", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"Claude Code existe, a instalação via npm é correta e o conceito de 'vibe coding' (programar em linguagem natural) está bem representado.",
+    errado:"Para uso intenso, exige plano API pago (não é gratuito). Também requer Node.js instalado — não é tão simples para não-técnicos quanto parece.",
+    uso:"Instalar Claude Code para escrever, refatorar e depurar código diretamente pelo terminal em linguagem natural.",
+    passos:["Instalar Node.js 18+ (nodejs.org)","Rodar: npm install -g @anthropic-ai/claude-code","Autenticar: rodar 'claude' no terminal → abre browser para login","Navegar até pasta do projeto: cd meu-projeto","Iniciar: claude → dar tarefas em PT: 'Adiciona tratamento de erro nessa função'"],
+    alternativas:"Cursor IDE (mais visual, pago), Aider (open-source, similar ao Claude Code), GitHub Copilot (integrado ao VS Code). Claude Code se diferencia em autonomia em tarefas longas multi-arquivo."
   },
   {
-    conta: "@nicholas.puru",
-    link: "https://www.instagram.com/reel/DXcgKEmAP3Z/",
-    tipo: "Reel",
-    categoria: "IA / Negócios",
-    titulo: "AI para Negócios — Newsletter Semanal",
-    descricao: "Criador de conteúdo em inglês sobre IA para negócios. Newsletter semanal com as releases e estratégias mais importantes de IA. 14.3K curtidas.",
-    cta: "Comment 'SEND' for the weekly AI newsletter",
-    likes: "14.3K", comentarios: "8.837", shares: "368",
-    utilidade: "Média",
-    uso: "Seguir para se manter atualizado sobre as principais releases e estratégias de negócios com IA.",
-    passos: ["Comentar 'SEND' no post para receber o link da newsletter", "Assinar a newsletter no site de @nicholas.puru", "Usar o conteúdo para identificar tendências e oportunidades de negócio"],
-    alternativas: "The Rundown AI, TLDR AI, Ben's Bites — newsletters gratuitas de alta qualidade sobre IA para negócios."
+    conta:"@nicholas.puru", link:"https://www.instagram.com/reel/DXcgKEmAP3Z/", tipo:"Reel",
+    categoria:"IA / Negócios", titulo:"AI para Negócios — Newsletter Semanal",
+    descricao:"Criador de conteúdo em inglês sobre estratégias de IA para negócios. Newsletter semanal com releases e estratégias. 14.3K curtidas.",
+    cta:"Comment 'SEND' for the weekly AI newsletter",
+    likes:"14.3K", comentarios:"8.837", shares:"368", utilidade:"Média",
+    veracidade:"Média",
+    certo:"Newsletter de IA para negócios é conteúdo legítimo. O engajamento alto (368 shares) indica conteúdo com valor real percebido.",
+    errado:"'Growing your business with AI' pode ser exagerado dependendo do estágio e setor. Newsletters de IA tendem a ser repetitivas — qualidade varia muito por edição. Verificar se o conteúdo tem profundidade ou é apenas resumo de notícias.",
+    uso:"Manter-se atualizado sobre releases e estratégias de IA aplicadas a negócios.",
+    passos:["Comentar 'SEND' no post para receber link","Ler 2-3 edições antes de assinar — avaliar profundidade","Filtrar o que é aplicável ao seu contexto específico","Complementar com The Rundown AI (gratuito, diário)"],
+    alternativas:"The Rundown AI, TLDR AI, Lenny's Newsletter (produto/negócios + IA) — todas gratuitas e de alta qualidade."
   },
   {
-    conta: "@brun0gpt",
-    link: "https://www.instagram.com/p/DXzJHm3Ea08/",
-    tipo: "Post (carrossel)",
-    categoria: "IA / Criação de Conteúdo",
-    titulo: "Claude cria 31 roteiros de Reels por mês",
-    descricao: "Prompt para fazer o Claude pesquisar o nicho, gerar 31 ideias de reels e criar roteiros completos (gancho, desenvolvimento, CTA) em lotes com feedback loop. 13.7K curtidas.",
-    cta: "Comenta 'REELS DE MAIO' e me segue para receber o prompt",
-    likes: "13.7K", comentarios: "10.6K", shares: "154",
-    utilidade: "Alta",
-    uso: "Automatizar criação de calendário editorial completo com roteiros prontos para gravar, usando Claude.",
-    passos: ["Abrir claude.ai (qualquer plano funciona)", "Usar prompt: 'Você é um estrategista de conteúdo para Instagram. Pesquise o nicho [SEU NICHO]. Gere 31 ideias de reels organizadas por objetivo (educação, entretenimento, CTA). Para cada ideia, crie um roteiro com: gancho nos 3 primeiros segundos, desenvolvimento em 30-45s, CTA final. Entregue em lotes de 3 e aguarde meu feedback antes de continuar.'", "Dar feedback nos primeiros 3 roteiros para calibrar o tom", "Iterar até ter os 31 roteiros aprovados", "Exportar para planilha ou Notion para acompanhar"],
-    alternativas: "ChatGPT faz o mesmo, mas Claude tende a ter roteiros com narrativa mais coerente e nuançada."
+    conta:"@brun0gpt", link:"https://www.instagram.com/p/DXzJHm3Ea08/", tipo:"Post (carrossel)",
+    categoria:"IA / Criação de Conteúdo", titulo:"Claude cria 31 roteiros de Reels por mês",
+    descricao:"Prompt para fazer o Claude pesquisar o nicho, gerar 31 ideias de reels e criar roteiros completos com gancho, desenvolvimento, CTA e feedback loop. 13.7K curtidas.",
+    cta:"Comenta 'REELS DE MAIO' e me segue para receber o prompt",
+    likes:"13.7K", comentarios:"10.6K", shares:"154", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"Claude realmente consegue criar roteiros de qualidade com essa metodologia. O sistema de lotes com feedback loop é uma boa prática de prompting — evita roteiros genéricos e calibra o tom.",
+    errado:"'Muda completamente o jogo' é hipérbole de marketing. A qualidade dos roteiros ainda depende de quanto tempo você investe em refinar e de quanto você conhece seu público. Claude não substitui a sua identidade na câmera.",
+    uso:"Criar calendário editorial completo de 31 reels por mês sem ter que pensar em pauta todo dia.",
+    passos:["Abrir claude.ai (qualquer plano funciona para isso)","Usar prompt base: 'Você é estrategista de conteúdo para Instagram. Nicho: [SEU NICHO]. Persona: [COMO VOCÊ SE COMUNICA]. Gere 31 ideias de reels organizadas por objetivo. Para cada: gancho de 3s, desenvolvimento de 30-45s, CTA. Entregue 3 por vez e aguarde meu feedback.'","Avaliar os 3 primeiros — dar feedback específico: 'Este está bom, este tom está errado, este está muito técnico'","Iterar até ter os 31 aprovados","Exportar para Notion ou planilha com data de publicação"],
+    alternativas:"ChatGPT com memória personalizada faz o mesmo. Claude tende a ter narrativa mais coerente; GPT tem mais variedade de formatos."
   },
   {
-    conta: "@michaelaiacademy + @mikedropai",
-    link: "https://www.instagram.com/p/DX-ibb-kaLp/",
-    tipo: "Post (carrossel)",
-    categoria: "IA / Workflow",
-    titulo: "AI Workflow Completo — Comment 'AI'",
-    descricao: "Workflow completo de IA para uso profissional. Altíssimo engajamento: 20.8K comentários. Conteúdo em inglês da @michaelaiacademy.",
-    cta: "Comment 'AI' below for the full workflow",
-    likes: "11.6K", comentarios: "20.8K", shares: "449",
-    utilidade: "Alta",
-    uso: "Implementar um workflow de IA completo para produtividade e automação de processos.",
-    passos: ["Comentar 'AI' no post para receber o workflow via DM", "Mapear os processos do seu negócio que podem ser automatizados", "Identificar quais ferramentas do workflow se encaixam nos seus casos de uso", "Implementar gradualmente, começando pelos processos de maior impacto"],
-    alternativas: "Ver canal YouTube @michaelaiacademy para tutoriais mais detalhados de cada etapa do workflow."
+    conta:"@michaelaiacademy + @mikedropai", link:"https://www.instagram.com/p/DX-ibb-kaLp/", tipo:"Post (carrossel)",
+    categoria:"IA / Workflow", titulo:"AI Workflow Completo — Comment 'AI'",
+    descricao:"Workflow completo de IA para uso profissional. Engajamento excepcional: 20.8K comentários — segundo maior desta lista. Conteúdo em inglês.",
+    cta:"Comment 'AI' below for the full workflow",
+    likes:"11.6K", comentarios:"20.8K", shares:"449", utilidade:"Alta",
+    veracidade:"Média",
+    certo:"O engajamento real (449 shares, 20.8K comentários de pessoas pedindo acesso) indica que o conteúdo tem valor percebido alto e real. @michaelaiacademy é criadora legítima de conteúdo sobre IA.",
+    errado:"Sem acesso ao workflow completo, não é possível verificar a qualidade real. Workflows 'completos' frequentemente são simplificados ou dependem de ferramentas pagas específicas. O lead magnet (comentar para receber) pode resultar em upsell.",
+    uso:"Implementar um sistema de produtividade com IA para processos do dia a dia.",
+    passos:["Comentar 'AI' no post para receber o workflow","Avaliar criticamente cada ferramenta sugerida — verificar custo real","Mapear quais etapas do workflow se aplicam ao seu negócio","Implementar um step por vez — não tentar tudo de uma vez","Medir o impacto antes de comprometer com ferramentas pagas"],
+    alternativas:"Ver canal YouTube @michaelaiacademy para conteúdo completo gratuito. n8n.io para automação visual de workflows."
   },
   {
-    conta: "@realmissai",
-    link: "https://www.instagram.com/reel/DWw-ee3k96i/",
-    tipo: "Reel",
-    categoria: "IA / Negócios",
-    titulo: "Guia para Ficar Milionário com IA",
-    descricao: "Criadora da Nova Zelândia sobre uso de IA para negócios e renda. Hashtags: #openclaw #aiagent #claude. Conteúdo motivacional sobre oportunidades de negócio com IA.",
-    cta: "N/A",
-    likes: "3.540", comentarios: "59", shares: "74",
-    utilidade: "Baixa",
-    uso: "Conteúdo inspiracional — baixo engajamento em comentários sugere conteúdo superficial.",
-    passos: ["Avaliar criticamente antes de usar", "Verificar outros reels da conta para conteúdo mais específico", "Filtrar as estratégias práticas do conteúdo motivacional"],
-    alternativas: "Contas como @justyn.ai e @nicholas.puru oferecem conteúdo mais prático sobre monetização com IA."
+    conta:"@realmissai", link:"https://www.instagram.com/reel/DWw-ee3k96i/", tipo:"Reel",
+    categoria:"IA / Negócios", titulo:"'Guia para Ficar Milionário com IA'",
+    descricao:"Criadora da Nova Zelândia sobre IA e negócios. Caption: 'This is your guide to become a millionaire with AI.' Hashtags: #openclaw #aiagent #claude.",
+    cta:"N/A",
+    likes:"3.540", comentarios:"59", shares:"74", utilidade:"Baixa",
+    veracidade:"Baixa",
+    certo:"IA de fato cria oportunidades de negócio reais. Algumas ferramentas mencionadas (OpenClaw, Claude) existem e são úteis.",
+    errado:"ALERTA: 'Guide to become a millionaire with AI' é clickbait puro. Nenhuma ferramenta garante riqueza. A proporção likes/comentários é péssima: 3.540 likes mas apenas 59 comentários — indica que as pessoas curtem sem se engajar, sinal de conteúdo superficial. Não há substância verificável.",
+    uso:"Ignorar a promessa de riqueza. Se houver dicas de ferramentas específicas no vídeo, extraí-las e verificar individualmente.",
+    passos:["Não agir com base neste reel sem pesquisa adicional","Verificar cada ferramenta mencionada de forma independente","Para reais oportunidades com IA: focar em @justyn.ai e @nicholas.puru desta lista"],
+    alternativas:"Para conteúdo sólido sobre monetização com IA: Justin Welsh (LinkedIn), Lenny Rachitsky (newsletter), Ali Abdaal (YouTube)."
   },
   {
-    conta: "N/A",
-    link: "https://www.instagram.com/reel/DYTMnNjR9Lh/",
-    tipo: "Reel",
-    categoria: "Indisponível",
-    titulo: "Link removido / indisponível",
-    descricao: "Este reel foi removido ou está indisponível. A página retorna erro 'Sorry, this page isn't available'.",
-    cta: "N/A",
-    likes: "—", comentarios: "—", shares: "—",
-    utilidade: "N/A",
-    uso: "Link inválido — pode ter sido deletado pelo autor.",
-    passos: ["Verificar se o link foi atualizado", "Tentar buscar o conteúdo pelo perfil original"],
-    alternativas: "N/A"
+    conta:"N/A", link:"https://www.instagram.com/reel/DYTMnNjR9Lh/", tipo:"Reel",
+    categoria:"Indisponível", titulo:"Link removido / indisponível",
+    descricao:"Este reel foi deletado ou tornou-se privado. Instagram retorna: 'Sorry, this page isn't available'.",
+    cta:"N/A", likes:"—", comentarios:"—", shares:"—", utilidade:"N/A",
+    veracidade:"N/A",
+    certo:"N/A — conteúdo inacessível.",
+    errado:"Link inválido. Pode ter sido deletado pelo autor ou por violação de termos do Instagram.",
+    uso:"N/A — link inativo.",
+    passos:["Verificar se o autor postou versão atualizada","Buscar o conteúdo pelo perfil do criador original"],
+    alternativas:"N/A"
   },
   {
-    conta: "@andrevictor.m",
-    link: "https://www.instagram.com/reel/DXHxv_rEXrr/",
-    tipo: "Reel",
-    categoria: "Lifestyle / Motivação",
-    titulo: "Andre Victor — 'De nada ❤️'",
-    descricao: "Influencer de lifestyle e riqueza (243K seguidores). Fez o primeiro milhão aos 18, Ferrari de R$3M, 50 países aos 22 anos. Caption minimalista 'De nada ❤️' com 15K curtidas.",
-    cta: "N/A",
-    likes: "15K", comentarios: "115", shares: "229",
-    utilidade: "Baixa",
-    uso: "Conteúdo de estilo de vida/aspiração. Sem aplicação prática direta.",
-    passos: ["Avaliar se o perfil é relevante para seus objetivos", "Verificar outros posts da conta para entender o tipo de conteúdo"],
-    alternativas: "Se o interesse é em negócios e renda, focar nas contas de IA desta lista oferece conteúdo mais acionável."
+    conta:"@andrevictor.m", link:"https://www.instagram.com/reel/DXHxv_rEXrr/", tipo:"Reel",
+    categoria:"Lifestyle / Motivação", titulo:"Andre Victor — 'De nada ❤️'",
+    descricao:"Influencer de lifestyle e riqueza (243K seguidores). Fez seu primeiro milhão aos 18, comprou uma Ferrari de R$3M. Caption minimalista 'De nada ❤️' — 15K curtidas, 229 shares.",
+    cta:"N/A",
+    likes:"15K", comentarios:"115", shares:"229", utilidade:"Baixa",
+    veracidade:"N/A",
+    certo:"Perfil verificado com audiência real. Alto número de shares (229) sugere que o vídeo contém algum insight ou valor percebido.",
+    errado:"Sem caption descritiva, impossível verificar o conteúdo. Narrativas de 'milionário aos 18' devem ser verificadas criticamente — frequentemente omitem fatores como capital inicial familiar ou contexto. A proporção 15K likes / 115 comentários indica audiência passiva.",
+    uso:"Conteúdo de aspiração/lifestyle. Sem aplicação prática direta para negócios ou IA.",
+    passos:["Assistir o vídeo para entender o conteúdo real antes de salvar","Avaliar se o conteúdo tem substância além do lifestyle"],
+    alternativas:"Para conteúdo de negócios com substância: @alexhormozi no Instagram."
   },
   {
-    conta: "@allesinisgalli",
-    link: "https://www.instagram.com/reel/DYHafjRIvMj/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Claude substitui agência de marketing",
-    descricao: "Claude consegue fazer tudo que uma agência de marketing faz: copy, estratégia, análise, criação de conteúdo. 4.9K curtidas, 7.8K comentários.",
-    cta: "N/A",
-    likes: "4.956", comentarios: "7.886", shares: "94",
-    utilidade: "Alta",
-    uso: "Usar Claude para centralizar tarefas de marketing: copy, briefings, análise de concorrência, estratégia de conteúdo.",
-    passos: ["Abrir Claude.ai com plano Pro", "Criar Project dedicado ao seu negócio/marca com contexto completo", "Usar para: criar copy de anúncios, planejar campanhas, analisar concorrentes, criar briefings visuais", "Iterar com feedback até calibrar o tom da marca", "Usar Projects Memory para manter consistência entre sessões"],
-    alternativas: "Jasper.ai e Copy.ai são especializados em marketing, mas Claude oferece maior versatilidade e raciocínio estratégico."
+    conta:"@allesinisgalli", link:"https://www.instagram.com/reel/DYHafjRIvMj/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Claude substitui agência de marketing",
+    descricao:"'Pode demitir sua agência. O Claude agora faz tudo isso pra você.' 4.9K curtidas, 7.8K comentários — alto engajamento.",
+    cta:"N/A",
+    likes:"4.956", comentarios:"7.886", shares:"94", utilidade:"Alta",
+    veracidade:"Média",
+    certo:"Claude consegue executar muitas tarefas de marketing: escrever copy, criar estratégia, analisar concorrentes, planejar conteúdo. Para solopreneurs e pequenas empresas, pode de fato reduzir ou eliminar a necessidade de uma agência.",
+    errado:"'Pode demitir sua agência' é exagerado para a maioria dos contextos. Agências oferecem: criatividade humana original, relacionamentos com veículos e parceiros, execução com equipe especializada e visão estratégica de mercado que Claude não replica completamente. É uma ferramenta poderosa, não uma substituição total.",
+    uso:"Usar Claude para centralizar e acelerar tarefas de marketing sem precisar de agência para o dia a dia.",
+    passos:["Criar Project no Claude.ai dedicado à sua marca com briefing completo","Usar para: copy de anúncios, emails, posts, análise de concorrência","Iterar com feedback até calibrar o tom da marca","Reservar agência apenas para estratégia criativa ou campanhas maiores","Economizar 60-80% dos custos de conteúdo para empresas pequenas"],
+    alternativas:"Jasper.ai e Copy.ai são especializados em marketing copy. Claude é mais versátil e estratégico; os outros são mais rápidos para conteúdo em volume."
   },
   {
-    conta: "@jp.runningclub + @garminbrasil",
-    link: "https://www.instagram.com/reel/DYIuL3iBtjv/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Garmin + Claude = Treinador Pessoal em Tempo Real",
-    descricao: "Integração do Garmin com Claude via API para coaching de corrida personalizado em tempo real. Dados do Garmin → Claude → recomendações de treino.",
-    cta: "N/A",
-    likes: "3.960", comentarios: "138", shares: "45",
-    utilidade: "Média",
-    uso: "Conectar dispositivos fitness (Garmin, Apple Watch) com Claude para análise personalizada de treino.",
-    passos: ["Obter API key do Garmin Connect (developer.garmin.com)", "Criar script Python para extrair dados de treino via Garmin API", "Enviar dados para Claude via API com prompt de análise", "Usar claude-sonnet-4-6 para respostas rápidas de coaching", "Automatizar via webhook para análise após cada treino"],
-    alternativas: "Training Peaks + ChatGPT funciona de forma similar. Para Apple Watch usar HealthKit API."
+    conta:"@jp.runningclub + @garminbrasil", link:"https://www.instagram.com/reel/DYIuL3iBtjv/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Garmin + Claude = Treinador Pessoal em Tempo Real",
+    descricao:"Integração da API do Garmin Connect com Claude para análise de dados de corrida e recomendações de treino personalizadas.",
+    cta:"N/A",
+    likes:"3.960", comentarios:"138", shares:"45", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"Tecnicamente correto e implementável: a Garmin Connect API existe e Claude consegue analisar dados de treino e gerar recomendações. É uma demonstração legítima de integração de dados pessoais com IA.",
+    errado:"'Treinador pessoal em tempo real' exagera um pouco — há latência de API, e Claude não tem contexto fisiológico completo (genética, histórico de lesões, etc.) que um treinador real teria. É um coach de dados, não um treinador completo.",
+    uso:"Análise automatizada de treinos de corrida com feedback personalizado após cada sessão.",
+    passos:["Acessar developer.garmin.com e criar aplicação OAuth","Usar a API /wellness/dailies e /activities para extrair dados de treino","Criar script Python: requests para API Garmin + Anthropic SDK","Prompt: 'Analise esses dados de corrida e sugira ajustes no treino desta semana: [dados]'","Automatizar via cron job para rodar após cada atividade registrada"],
+    alternativas:"Para Apple Watch: HealthKit API. Training Peaks tem análise nativa; Claude adiciona coaching conversacional sobre os dados."
   },
   {
-    conta: "@walruscarpclothing",
-    link: "https://www.instagram.com/reel/DW2LS3-jJw0/",
-    tipo: "Reel",
-    categoria: "Parques / Disney",
-    titulo: "Como fazer Galactic Hero no Buzz Lightyear (Disney)",
-    descricao: "Guia completo dos alvos e regras para atingir pontuação máxima (Galactic Hero) na atração recém-reformada Buzz Lightyear's Space Ranger Spin no Magic Kingdom.",
-    cta: "N/A",
-    likes: "2.929", comentarios: "22", shares: "44",
-    utilidade: "Média",
-    uso: "Referência para visita ao Magic Kingdom — maximizar pontuação na atração Buzz Lightyear.",
-    passos: ["Assistir o reel antes da visita para memorizar os alvos de maior pontuação", "Focar nos alvos em movimento (valem mais pontos)", "Atirar nos alvos Z (100.000 pontos) na última sala", "Manter o botão pressionado continuamente durante a atração"],
-    alternativas: "TouringPlans.com e AllEarsNet têm guias escritos detalhados desta mesma atração."
+    conta:"@walruscarpclothing", link:"https://www.instagram.com/reel/DW2LS3-jJw0/", tipo:"Reel",
+    categoria:"Parques / Disney", titulo:"Como atingir Galactic Hero no Buzz Lightyear (Disney)",
+    descricao:"Guia dos alvos e regras para pontuação máxima na atração reformada Buzz Lightyear's Space Ranger Spin no Magic Kingdom.",
+    cta:"N/A",
+    likes:"2.929", comentarios:"22", shares:"44", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"Dicas de pontuação em atrações Disney são geralmente precisas quando baseadas em experiência real. A atração foi reformada e existe de fato.",
+    errado:"A reforma recente pode ter alterado a posição ou pontuação de alguns alvos. Verificar se as dicas são da versão reformada (2025) ou da antiga. A conta principal é de moda (@walruscarpclothing) — não é especialista em Disney.",
+    uso:"Maximizar pontuação na atração Buzz Lightyear durante visita ao Magic Kingdom.",
+    passos:["Focar nos alvos em movimento (valem mais pontos)","Atirar nos alvos Z na última sala (100.000 pontos cada)","Manter botão de disparo pressionado continuamente","Apontar para o centro do alvo — não as bordas","Verificar dicas atualizadas em AllEars.net antes da visita"],
+    alternativas:"TouringPlans.com e AllEarsNet têm guias escritos e atualizados com imagens de cada alvo."
   },
   {
-    conta: "@yourfamilyvacationplanner",
-    link: "https://www.instagram.com/reel/DXFbJVikXlD/",
-    tipo: "Reel",
-    categoria: "Parques / Disney",
-    titulo: "Segredos do Toy Story Mania para alta pontuação",
-    descricao: "Dicas e segredos para maximizar pontuação no Toy Story Mania (Hollywood Studios), incluindo alvos específicos e técnicas de disparo.",
-    cta: "N/A",
-    likes: "6.672", comentarios: "88", shares: "81",
-    utilidade: "Média",
-    uso: "Referência para visita ao Hollywood Studios — estratégia completa para Toy Story Mania.",
-    passos: ["Assistir antes da visita para aprender os alvos prioritários", "Focar nos alvos de balão (valem até 5.000 pontos cada)", "Na cena do Buzz, acertar os aliens no painel central", "Trocar rapidamente de alvo em vez de atirar em série no mesmo"],
-    alternativas: "WDW Magic e Disney Tourist Blog têm guias escritos completos com imagens dos alvos."
+    conta:"@yourfamilyvacationplanner", link:"https://www.instagram.com/reel/DXFbJVikXlD/", tipo:"Reel",
+    categoria:"Parques / Disney", titulo:"Segredos do Toy Story Mania — Hollywood Studios",
+    descricao:"Dicas e segredos para maximizar pontuação no Toy Story Mania (Hollywood Studios), incluindo alvos específicos e técnicas.",
+    cta:"N/A",
+    likes:"6.672", comentarios:"88", shares:"81", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"Conta especializada em planejamento de viagens em família para parques. Dicas de scoring do Toy Story Mania são bem documentadas e geralmente precisas.",
+    errado:"Nada significativo. A atração é estável em mecânica há anos — dicas têm boa durabilidade.",
+    uso:"Estratégia completa para Toy Story Mania antes de visitar Hollywood Studios.",
+    passos:["Focar nos alvos de balão — valem até 5.000 pts cada","Na cena do Buzz: aliens no painel central têm maior pontuação","Trocar rapidamente de alvo em vez de insistir no mesmo","Sentar no lado esquerdo do carrinho se possível (mira mais fácil)","WDW Magic tem guia visual completo com fotos de cada alvo"],
+    alternativas:"Disney Tourist Blog e WDW Magic têm guias escritos detalhados com fotos de todos os alvos."
   },
   {
-    conta: "@davethrills",
-    link: "https://www.instagram.com/reel/DXwkapkPhEa/",
-    tipo: "Reel",
-    categoria: "Parques / Disney",
-    titulo: "Universal Orlando — Benefícios Passholders",
-    descricao: "Universal dando acesso especial a todo o parque para anuais (passholders). Detalhes sobre benefícios do Annual Pass da Universal Orlando.",
-    cta: "N/A",
-    likes: "5.168", comentarios: "153", shares: "102",
-    utilidade: "Média",
-    uso: "Referência para decisão de compra de Annual Pass da Universal Orlando.",
-    passos: ["Verificar benefícios atuais em universalorlando.com/annual-passes", "Comparar planos: Seasonal, Power, Preferred, Premier", "Calcular break-even (geralmente 2-3 visitas/ano justificam o Premier)", "Verificar desconto para Florida residents"],
-    alternativas: "Ver canal YouTube @davethrills para análises mais completas dos passes e atrações."
+    conta:"@davethrills", link:"https://www.instagram.com/reel/DXwkapkPhEa/", tipo:"Reel",
+    categoria:"Parques / Disney", titulo:"Universal Orlando — Benefícios Exclusivos para Passholders",
+    descricao:"Universal oferecendo acesso especial ao parque para annual passholders. Detalhes dos benefícios do Annual Pass.",
+    cta:"N/A",
+    likes:"5.168", comentarios:"153", shares:"102", utilidade:"Média",
+    veracidade:"Alta",
+    certo:"@davethrills é criador especializado e legítimo de conteúdo sobre parques temáticos. Benefícios de annual pass são reais e verificáveis no site oficial.",
+    errado:"Benefícios e datas de eventos exclusivos mudam com frequência. Verificar sempre em universalorlando.com para informações atuais — o que era verdade no vídeo pode ter mudado.",
+    uso:"Referência para decisão de compra e aproveitamento de Annual Pass da Universal.",
+    passos:["Verificar benefícios atuais em universalorlando.com/annual-passes","Comparar planos: Seasonal, Power, Preferred, Premier","Calcular break-even: geralmente 2-3 visitas/ano justificam o Premier","Verificar desconto para Florida Residents (até 30%)","Ativar notificações de eventos exclusivos para passholders no app Universal"],
+    alternativas:"Canal YouTube @davethrills para análises mais completas. Blog @bioreconstruct para fotos e updates dos parques."
   },
   {
-    conta: "@amandalseabra + @bambulab_latam",
-    link: "https://www.instagram.com/reel/DXXqlbboSiQ/",
-    tipo: "Reel",
-    categoria: "Impressão 3D",
-    titulo: "Bambu Lab — Setup Multicolor Completo",
-    descricao: "Setup completo de impressora Bambu Lab com multicolor especificado. Altíssimo engajamento: 35.8K curtidas. Parceria com @bambulab_latam.",
-    cta: "N/A",
-    likes: "35.8K", comentarios: "7.012", shares: "359",
-    utilidade: "Alta",
-    uso: "Referência para setup de impressora 3D Bambu Lab com impressão multicolor.",
-    passos: ["Escolher modelo: X1C (top, 16 cores), P1S (mid-range) ou A1 (entry)", "Adquirir AMS (Automatic Material System) para troca automática de filamento", "Instalar Bambu Studio para fatiamento", "Baixar modelos em MakerWorld.com (plataforma oficial Bambu)", "Para multicolor: usar Bambu Handy app para colorir modelos 3D facilmente"],
-    alternativas: "Prusa XL para quem prefere open-source; BambuLab domina custo-benefício em multicolor."
+    conta:"@amandalseabra + @bambulab_latam", link:"https://www.instagram.com/reel/DXXqlbboSiQ/", tipo:"Reel",
+    categoria:"Impressão 3D", titulo:"Bambu Lab — Setup Multicolor Completo",
+    descricao:"Setup completo de Bambu Lab com AMS para impressão multicolor. Engajamento altíssimo: 35.8K curtidas — maior desta lista. Parceria oficial com @bambulab_latam.",
+    cta:"N/A",
+    likes:"35.8K", comentarios:"7.012", shares:"359", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"Bambu Lab é líder atual em custo-benefício para impressão 3D multicolor. O setup mostrado é real, funcional e bem documentado pela comunidade. 35.8K likes indica grande interesse real no mercado.",
+    errado:"Sendo post patrocinado (@bambulab_latam), os aspectos negativos (custo alto do AMS, desperdício de filamento em purgas, filamento de marca própria) provavelmente não são mencionados. AMS é excelente mas tem curva de aprendizado.",
+    uso:"Referência para montar setup de impressora 3D multicolor de alta qualidade.",
+    passos:["Escolher modelo: X1C (top, 16 cores), P1S (mid, custo-benefício) ou A1 Combo (entry)","Adquirir AMS — necessário para multicolor automático","Instalar Bambu Studio e configurar perfis de filamento","Baixar modelos em MakerWorld.com (plataforma oficial, muitos gratuitos)","Para multicolor: usar Bambu Handy app para colorir modelos facilmente"],
+    alternativas:"Prusa XL para quem prefere open-source. BambuLab domina em facilidade e velocidade; Prusa domina em documentação e comunidade."
   },
   {
-    conta: "@realmissai",
-    link: "https://www.instagram.com/reel/DXJVu7kEYn8/",
-    tipo: "Reel",
-    categoria: "IA / Negócios",
-    titulo: "AI Agent Setup — 'This actually worked!'",
-    descricao: "Demonstração de setup de AI agent que funcionou na prática. Comment 'AI' for the detailed set up guide. Hashtags: #ai #business #aiagent.",
-    cta: "Comment 'AI' for the detailed set up guide",
-    likes: "2.950", comentarios: "615", shares: "73",
-    utilidade: "Média",
-    uso: "Setup de AI agent para automação de negócios. Comentar 'AI' para receber o guia detalhado.",
-    passos: ["Comentar 'AI' no post para receber o setup guide", "Avaliar qual ferramenta de agente a criadora usa (provavelmente n8n, Make, ou Claude API)", "Adaptar o workflow para seu caso de uso específico"],
-    alternativas: "n8n.io e Make.com são plataformas visuais para criar AI agents sem código; Claude API para agentes customizados."
+    conta:"@realmissai", link:"https://www.instagram.com/reel/DXJVu7kEYn8/", tipo:"Reel",
+    categoria:"IA / Negócios", titulo:"AI Agent Setup — 'This Actually Worked!'",
+    descricao:"Demonstração de setup de AI agent que funcionou na prática. Comment 'AI' for the detailed set up guide. Hashtags: #ai #business #aiagent.",
+    cta:"Comment 'AI' for the detailed set up guide",
+    likes:"2.950", comentarios:"615", shares:"73", utilidade:"Média",
+    veracidade:"Média",
+    certo:"A conta cria conteúdo consistente sobre AI agents. 'This actually worked' pode ser legítimo se mostrar resultado concreto no vídeo.",
+    errado:"Sem ver o vídeo completo, impossível verificar o que 'worked' significa. Pode ser demonstração simplificada que não replica facilmente. Comentar para receber guia é lead magnet — pode resultar em produto pago.",
+    uso:"Comentar 'AI' para receber o guia e avaliar a ferramenta/setup demonstrada.",
+    passos:["Comentar 'AI' no post para receber setup guide","Identificar qual ferramenta é usada (n8n, Make, Claude API, etc.)","Pesquisar a ferramenta de forma independente antes de pagar por qualquer upsell","Testar versão gratuita da ferramenta antes de adotar"],
+    alternativas:"n8n.io (open-source, self-hostable), Make.com (visual, gratuito até certo volume), Claude API diretamente para agentes customizados."
   },
   {
-    conta: "@rafa.grandi",
-    link: "https://www.instagram.com/reel/DWGxz98k0Lu/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Claude Code + Vibe Coding + Canva",
-    descricao: "Integração de Claude Code com Canva e vibe coding. Maior engajamento desta lista entre reels de IA em PT: 12.4K curtidas, 11.4K comentários. #claude #claudecode #vibecoding #canva",
-    cta: "Comenta 'IA' que eu te mando pelo Direct!",
-    likes: "12.4K", comentarios: "11.4K", shares: "128",
-    utilidade: "Alta",
-    uso: "Usar Claude Code para automatizar design e criação de conteúdo no Canva.",
-    passos: ["Instalar Claude Code: npm install -g @anthropic-ai/claude-code", "Instalar MCP do Canva (disponível no marketplace de MCPs)", "Autenticar com sua conta Canva", "Usar comandos como: 'Crie um post de Instagram para [campanha] usando nosso template'", "Iterar com feedback até o design estar pronto para uso"],
-    alternativas: "Figma Plugin com IA (Galileo, Magician) para design; mas integração Canva+Claude é mais acessível para não-designers."
+    conta:"@rafa.grandi", link:"https://www.instagram.com/reel/DWGxz98k0Lu/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Claude Code + Vibe Coding + Canva",
+    descricao:"Integração de Claude Code com o Canva via MCP para criação de design automatizada. Maior engajamento de IA em PT desta lista: 12.4K curtidas, 11.4K comentários. #claude #claudecode #vibecoding #canva",
+    cta:"Comenta 'IA' que eu te mando pelo Direct!",
+    likes:"12.4K", comentarios:"11.4K", shares:"128", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"MCP do Canva existe e a integração com Claude Code é real e funcional. O Canva tem API oficial. O conceito de 'vibe coding' para design (dar instruções em linguagem natural para criar designs) está bem representado.",
+    errado:"O MCP do Canva ainda está em fase beta/preview — pode ter limitações. Não é possível fazer designs completamente do zero só com prompts; é mais útil para iterar sobre templates existentes.",
+    uso:"Automatizar criação e iteração de posts, apresentações e materiais visuais no Canva usando Claude.",
+    passos:["Instalar Claude Code: npm install -g @anthropic-ai/claude-code","Acessar marketplace de MCPs para o Canva (canva.com/developers ou MCP registry)","Autenticar com OAuth da conta Canva","Usar Claude Code: 'Crie um post de Instagram para campanha [X] usando nosso template da marca'","Iterar com feedback visual até aprovar o design"],
+    alternativas:"Figma com plugin Galileo para design mais técnico. Para conteúdo em volume: Canva nativo já tem IA própria (Magic Studio) sem precisar de Claude."
   },
   {
-    conta: "@justyn.ai",
-    link: "https://www.instagram.com/reel/DVrCk18jtIP/",
-    tipo: "Reel",
-    categoria: "IA / Claude",
-    titulo: "Claude Code — Introdução e Setup Completo",
-    descricao: "Introdução ao Claude Code em inglês: 'Think about all the time you asked AI to do something and it said it would, but then it didn't… Claude Code will ACTUALLY build those things for you.' 16.5K curtidas.",
-    cta: "Drop 'SETUP' and I'll send you the step by step video",
-    likes: "16.5K", comentarios: "5.951", shares: "325",
-    utilidade: "Alta",
-    uso: "Setup completo do Claude Code para desenvolvimento de software autônomo.",
-    passos: ["Comentar 'SETUP' no post para receber o vídeo de instalação", "Requisito: Node.js 18+ e conta Anthropic", "Instalar: npm install -g @anthropic-ai/claude-code", "Para projetos existentes: abrir na pasta raiz e rodar 'claude'", "Iniciar com tarefas simples: 'Add error handling to this function', depois escalar"],
-    alternativas: "Cursor IDE tem UX mais visual; Aider é open-source similar. Claude Code se diferencia em autonomia em tarefas longas."
+    conta:"@justyn.ai", link:"https://www.instagram.com/reel/DVrCk18jtIP/", tipo:"Reel",
+    categoria:"IA / Claude", titulo:"Claude Code — Introdução e Setup para Iniciantes",
+    descricao:"Introdução ao Claude Code em inglês com argumento central: 'Claude Code will ACTUALLY build those things for you' — diferenciando da promessa vaga de outros assistentes. 16.5K curtidas.",
+    cta:"Drop 'SETUP' and I'll send you the step by step video",
+    likes:"16.5K", comentarios:"5.951", shares:"325", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"A distinção é válida e importante: Claude Code de fato executa tarefas de forma mais autônoma e completa que assistentes de chat tradicionais. É uma das ferramentas de coding mais avançadas disponíveis. O claim é respaldado por benchmarks e uso real.",
+    errado:"Para usuários não-técnicos, ainda existe curva de aprendizado significativa. 'Will ACTUALLY build those things' pode criar expectativa de que qualquer pessoa consegue sem conhecimento — não é o caso para projetos complexos.",
+    uso:"Setup completo do Claude Code para desenvolvimento de software autônomo e coding em linguagem natural.",
+    passos:["Comentar 'SETUP' no post para receber o vídeo de instalação","Requisitos: Node.js 18+ e conta na Anthropic","Instalar: npm install -g @anthropic-ai/claude-code","Para projetos existentes: entrar na pasta raiz e rodar 'claude'","Começar com tarefas simples antes de escalar para projetos complexos"],
+    alternativas:"Cursor IDE (mais visual, ótimo para iniciantes), Aider (open-source gratuito). Claude Code é mais poderoso para tarefas longas e complexas."
   },
   {
-    conta: "@cyberjasbytes",
-    link: "https://www.instagram.com/p/DUBI3iDFMvv/",
-    tipo: "Post (carrossel)",
-    categoria: "IA / Segurança",
-    titulo: "10 Configurações de Segurança Obrigatórias — ClawdBot",
-    descricao: "Guia de segurança para o ClawdBot (Claude Desktop com shell access). 10 configurações mínimas necessárias. A própria documentação do ClawdBot diz: 'running an AI agent with shell access is spicy'. 10.3K curtidas.",
-    cta: "N/A",
-    likes: "10.3K", comentarios: "138", shares: "435",
-    utilidade: "Alta",
-    uso: "Checklist de segurança OBRIGATÓRIO antes de usar Claude Code ou qualquer agente com acesso ao sistema.",
-    passos: ["Rodar em sandbox/container Docker isolado", "Limitar permissões de sistema operacional (sem acesso root)", "Configurar allowlist de comandos permitidos no CLAUDE.md", "Usar modo read-only por padrão, autorizar writes explicitamente", "Nunca usar na mesma máquina com dados sensíveis sem isolamento", "Revisar TODAS as ações antes de confirmar em modo interativo", "Fazer backup antes de qualquer sessão de coding autônomo", "Configurar rate limiting na API key", "Usar chave API separada para agentes (não a pessoal)", "Monitorar logs de atividade do agente"],
-    alternativas: "Para ambientes corporativos: usar AWS Bedrock ou Azure OpenAI com controles de rede mais rígidos."
+    conta:"@cyberjasbytes", link:"https://www.instagram.com/p/DUBI3iDFMvv/", tipo:"Post (carrossel)",
+    categoria:"IA / Segurança", titulo:"10 Configurações de Segurança Obrigatórias — ClawdBot / Claude Code",
+    descricao:"Guia de segurança para ClawdBot/Claude Code com shell access. A própria documentação diz: 'running an AI agent with shell access is spicy'. 10.3K curtidas, 435 shares.",
+    cta:"N/A",
+    likes:"10.3K", comentarios:"138", shares:"435", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"As configurações de segurança são de fato necessárias e recomendadas pela própria Anthropic. O alerta sobre riscos de shell access é legítimo e importante. Um agente com acesso ao sistema operacional pode deletar arquivos, exfiltrar dados ou executar código malicioso se mal configurado.",
+    errado:"'DON'T USE without these settings' pode ser excessivamente alarmista — Claude Code tem proteções built-in e pede confirmação antes de ações destrutivas. Mas cautela é válida, especialmente em ambientes de produção.",
+    uso:"Checklist OBRIGATÓRIO de segurança antes de usar Claude Code ou qualquer agente com acesso ao sistema.",
+    passos:["Rodar em container Docker isolado da máquina principal","Limitar permissões: nunca usar com root/admin","Configurar allowlist de comandos no CLAUDE.md do projeto","Usar modo --dangerously-skip-permissions NUNCA em produção","Fazer backup antes de qualquer sessão de coding autônomo","Usar API key separada para agentes (não a chave pessoal)","Monitorar logs de atividade","Nunca usar na mesma máquina com dados sensíveis sem isolamento","Revisar TODAS as ações em modo interativo antes de confirmar","Configurar rate limiting na API key no console da Anthropic"],
+    alternativas:"Para ambientes corporativos: AWS Bedrock ou Azure OpenAI com controles de rede e compliance mais rígidos."
   },
   {
-    conta: "RODRIGUEZ PORTO CORP",
-    link: "https://www.dropbox.com/scl/fi/hc2eav101zm32ixuk2tb5/2025-RODRIGUEZ-PORTO-RESALE-CERTIFICATE.PDF?rlkey=o9l7nkhc1dj5978txb9bh5x01&st=bjgbef9j&dl=0",
-    tipo: "PDF",
-    categoria: "Documentos",
-    titulo: "2025 Florida Annual Resale Certificate for Sales Tax",
-    descricao: "Certificado anual de revenda de impostos da Flórida (DR-13) para RODRIGUEZ PORTO CORP. Endereço: 1500 W Copans Rd Ste A4, Pompano Beach, FL 33064. Certificado #16-8017929532-5. Expira 31/12/2025.",
-    cta: "N/A — Documento fiscal",
-    likes: "—", comentarios: "—", shares: "—",
-    utilidade: "Alta",
-    uso: "Documento fiscal necessário para compras isentas de sales tax na Flórida. Usar ao fazer compras para revenda.",
-    passos: ["Manter cópia digital acessível para apresentar a fornecedores", "Renovar antes de 31/12/2025 em floridarevenue.com/taxes/certificates", "Usar Certificate Number 16-8017929532-5 para validação por vendedores", "Válido para: revenda de produtos, re-aluguel de propriedades, incorporação em produtos manufaturados", "Verificar validade online pelo vendedor: 877-357-3725 ou app Florida DOR"],
-    alternativas: "Renovação automática disponível via Florida Department of Revenue — verificar floridarevenue.com"
+    conta:"RODRIGUEZ PORTO CORP", link:"https://www.dropbox.com/scl/fi/hc2eav101zm32ixuk2tb5/2025-RODRIGUEZ-PORTO-RESALE-CERTIFICATE.PDF?rlkey=o9l7nkhc1dj5978txb9bh5x01&st=bjgbef9j&dl=0", tipo:"PDF",
+    categoria:"Documentos", titulo:"2025 Florida Annual Resale Certificate for Sales Tax",
+    descricao:"Certificado DR-13 de isenção de sales tax para compras de revenda. RODRIGUEZ PORTO CORP, 1500 W Copans Rd Ste A4, Pompano Beach, FL 33064. Certificado #16-8017929532-5. Expira 31/12/2025.",
+    cta:"N/A — Documento fiscal oficial",
+    likes:"—", comentarios:"—", shares:"—", utilidade:"Alta",
+    veracidade:"Alta",
+    certo:"Documento oficial emitido pelo Florida Department of Revenue. O número de certificado (16-8017929532-5) pode ser verificado online pelos vendedores. Completamente legítimo.",
+    errado:"⚠️ ATENÇÃO: O certificado expira em 31/12/2025. Após essa data, perde validade e compras com ele são ilegais. Verificar se a renovação está agendada.",
+    uso:"Apresentar a fornecedores para compras isentas de sales tax (6%) na Flórida — apenas para produtos/serviços destinados à revenda.",
+    passos:["Salvar cópia digital segura (não apenas neste Dropbox link)","Agendar renovação antes de dezembro/2025 em floridarevenue.com/taxes/certificates","Para vendedores verificarem: ligar 877-357-3725 ou usar app Florida DOR","Usar APENAS para compras de revenda — uso pessoal é ilegal","Certificate Number para verificações: 16-8017929532-5"],
+    alternativas:"Renovação automática disponível no portal do Florida Department of Revenue — criar conta em floridarevenue.com."
   }
 ];
 
 const catConfig = {
-  "IA / Claude": { emoji: "🤖", cls: "cat-ia" },
-  "IA / Negócios": { emoji: "💼", cls: "cat-ia" },
-  "IA / Criação de Conteúdo": { emoji: "✍️", cls: "cat-ia" },
-  "IA / Workflow": { emoji: "⚙️", cls: "cat-ia" },
-  "IA / Segurança": { emoji: "🔒", cls: "cat-ia" },
-  "Impressão 3D": { emoji: "🖨️", cls: "cat-3d" },
-  "Parques / Disney": { emoji: "🏰", cls: "cat-parques" },
-  "Lifestyle / Motivação": { emoji: "💰", cls: "cat-lifestyle" },
-  "Lifestyle Tech": { emoji: "🎮", cls: "cat-lifestyle" },
-  "Documentos": { emoji: "📄", cls: "cat-docs" },
-  "Indisponível": { emoji: "❌", cls: "cat-na" }
+  "IA / Claude":              { emoji:"🤖", cls:"cat-ia" },
+  "IA / Negócios":            { emoji:"💼", cls:"cat-ia" },
+  "IA / Criação de Conteúdo": { emoji:"✍️", cls:"cat-ia" },
+  "IA / Workflow":            { emoji:"⚙️", cls:"cat-ia" },
+  "IA / Segurança":           { emoji:"🔒", cls:"cat-ia" },
+  "Impressão 3D":             { emoji:"🖨️", cls:"cat-3d" },
+  "Parques / Disney":         { emoji:"🏰", cls:"cat-parques" },
+  "Lifestyle / Motivação":    { emoji:"💰", cls:"cat-lifestyle" },
+  "Lifestyle Tech":           { emoji:"🎮", cls:"cat-lifestyle" },
+  "Documentos":               { emoji:"📄", cls:"cat-docs" },
+  "Indisponível":             { emoji:"❌", cls:"cat-na" }
 };
+const utilConfig = { "Alta":"util-alta","Média":"util-media","Baixa":"util-baixa","N/A":"util-na" };
+const verConfig  = { "Alta":"ver-alta","Média":"ver-media","Baixa":"ver-baixa","Enganoso":"ver-enganoso","N/A":"ver-na" };
 
-const utilConfig = {
-  "Alta": "util-alta",
-  "Média": "util-media",
-  "Baixa": "util-baixa",
-  "N/A": "util-na"
-};
-
-function getMainCat(cat) {
-  if (cat.startsWith("IA")) return "IA / Claude";
-  return cat;
-}
+function getMainCat(cat) { return cat.startsWith("IA") ? "IA / Claude" : cat; }
 
 function buildFilters() {
-  const counts = {};
-  counts["Todos"] = items.length;
-  items.forEach(i => {
-    const mc = getMainCat(i.categoria);
-    counts[mc] = (counts[mc] || 0) + 1;
-  });
-  const order = ["Todos", "IA / Claude", "Impressão 3D", "Parques / Disney", "Lifestyle / Motivação", "Lifestyle Tech", "Documentos", "Indisponível"];
+  const counts = {"Todos": items.length};
+  items.forEach(i => { const mc = getMainCat(i.categoria); counts[mc] = (counts[mc]||0)+1; });
+  const order = ["Todos","IA / Claude","Impressão 3D","Parques / Disney","Lifestyle / Motivação","Lifestyle Tech","Documentos","Indisponível"];
   const container = document.getElementById("filters");
   order.forEach(cat => {
     if (!counts[cat]) return;
     const btn = document.createElement("button");
-    btn.className = "filter-btn" + (cat === "Todos" ? " active" : "");
+    btn.className = "filter-btn" + (cat==="Todos" ? " active" : "");
     btn.dataset.cat = cat;
-    const emoji = catConfig[cat] ? catConfig[cat].emoji + " " : "";
+    const emoji = catConfig[cat] ? catConfig[cat].emoji+" " : "";
     btn.innerHTML = `${emoji}${cat} <span class="count">${counts[cat]}</span>`;
-    btn.onclick = () => {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderCards();
-    };
+    btn.onclick = () => { document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); renderCards(); };
     container.appendChild(btn);
   });
 }
 
 function buildSummary() {
-  const iaCount = items.filter(i => i.categoria.startsWith("IA")).length;
-  const altaCount = items.filter(i => i.utilidade === "Alta").length;
-  const totalEngagement = items.reduce((s, i) => {
-    const n = parseFloat((i.likes || "0").replace(".", "").replace("K", "000").replace(",", "")) || 0;
-    return s + n;
-  }, 0);
-  const container = document.getElementById("summary");
-  container.innerHTML = `
-    <div class="summary-chip">📊 <strong>${items.length}</strong> itens analisados</div>
-    <div class="summary-chip">🤖 <strong>${iaCount}</strong> sobre IA / Claude</div>
-    <div class="summary-chip">⭐ <strong>${altaCount}</strong> de utilidade alta</div>
-    <div class="summary-chip">❌ <strong>1</strong> link removido</div>
-  `;
+  const ia = items.filter(i=>i.categoria.startsWith("IA")).length;
+  const alta = items.filter(i=>i.utilidade==="Alta").length;
+  const verAlta = items.filter(i=>i.veracidade==="Alta").length;
+  const cuidado = items.filter(i=>["Baixa","Enganoso"].includes(i.veracidade)).length;
+  document.getElementById("summary").innerHTML = `
+    <div class="summary-chip">📊 <strong>${items.length}</strong> itens</div>
+    <div class="summary-chip">🤖 <strong>${ia}</strong> sobre IA</div>
+    <div class="summary-chip">⭐ <strong>${alta}</strong> utilidade alta</div>
+    <div class="summary-chip">✅ <strong>${verAlta}</strong> veracidade alta</div>
+    <div class="summary-chip">⚠️ <strong>${cuidado}</strong> requerem cuidado</div>`;
 }
 
 function renderCards() {
@@ -510,74 +476,51 @@ function renderCards() {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
   let count = 0;
-
-  items.forEach((item, idx) => {
+  items.forEach(item => {
     const mc = getMainCat(item.categoria);
     if (activeCat !== "Todos" && mc !== activeCat) return;
-    if (search && ![item.conta, item.titulo, item.descricao, item.categoria].join(" ").toLowerCase().includes(search)) return;
-
-    const cfg = catConfig[item.categoria] || { emoji: "📌", cls: "cat-na" };
+    if (search && ![item.conta,item.titulo,item.descricao,item.categoria].join(" ").toLowerCase().includes(search)) return;
+    const cfg = catConfig[item.categoria] || { emoji:"📌", cls:"cat-na" };
     const card = document.createElement("div");
     card.className = "card";
-
-    const stepsHtml = (item.passos || []).map(p => `<li>${p}</li>`).join("");
-    const statsHtml = item.likes !== "—" ? `
-      <div class="stats">
-        <span class="stat">❤️ <span class="num">${item.likes}</span></span>
-        <span class="stat">💬 <span class="num">${item.comentarios}</span></span>
-        <span class="stat">🔄 <span class="num">${item.shares}</span></span>
-      </div>` : '';
-
+    const statsHtml = item.likes !== "—" ? `<div class="stats"><span class="stat">❤️ <span class="num">${item.likes}</span></span><span class="stat">💬 <span class="num">${item.comentarios}</span></span><span class="stat">🔄 <span class="num">${item.shares}</span></span></div>` : '';
+    const stepsHtml = (item.passos||[]).map(p=>`<li>${p}</li>`).join("");
     card.innerHTML = `
-      <div class="card-header">
-        <div>
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-            <span class="cat-badge ${cfg.cls}">${cfg.emoji} ${item.categoria}</span>
-            <span class="utilidade-tag ${utilConfig[item.utilidade] || 'util-na'}">${item.utilidade}</span>
-          </div>
-          <div class="card-title">${item.titulo}</div>
+      <div class="card-top">
+        <div class="badges-row">
+          <span class="cat-badge ${cfg.cls}">${cfg.emoji} ${item.categoria}</span>
+          <span class="util-tag ${utilConfig[item.utilidade]||'util-na'}">★ ${item.utilidade}</span>
+          <span class="ver-tag ${verConfig[item.veracidade]||'ver-na'}">✓ ${item.veracidade}</span>
         </div>
+        <div class="card-title">${item.titulo}</div>
       </div>
       <div class="card-body">
         <a class="account" href="${item.link}" target="_blank">${item.conta} ↗</a>
         <div class="descricao">${item.descricao}</div>
         ${item.cta !== "N/A" ? `<div class="cta-box">💬 "${item.cta}"</div>` : ''}
         ${statsHtml}
-        <button class="expand-btn" onclick="toggleImpl(this)">
-          <span class="arrow">▶</span> Como usar & Implementação
-        </button>
-        <div class="implementation">
-          <div class="impl-section">
-            <div class="impl-label">🎯 Como usar</div>
-            <div class="impl-text">${item.uso}</div>
-          </div>
-          <div class="impl-section">
-            <div class="impl-label">📋 Passo a passo</div>
-            <ol class="impl-steps">${stepsHtml}</ol>
-          </div>
-          ${item.alternativas ? `<div class="impl-section"><div class="impl-label">🔄 Alternativas</div><div class="alt-box">${item.alternativas}</div></div>` : ''}
+        <button class="expand-btn" onclick="toggle(this)"><span class="arrow">▶</span> Ver análise completa & implementação</button>
+        <div class="details">
+          <div class="det-section certo"><div class="det-label l-certo">✅ O que está certo</div><div class="det-text">${item.certo}</div></div>
+          <div class="det-section errado"><div class="det-label l-errado">⚠️ O que está errado / exagerado</div><div class="det-text">${item.errado}</div></div>
+          <div class="det-section"><div class="det-label">🎯 Como usar</div><div class="det-text">${item.uso}</div></div>
+          <div class="det-section"><div class="det-label">📋 Passo a passo</div><ol class="impl-steps">${stepsHtml}</ol></div>
+          <div class="det-section"><div class="det-label">🔄 Alternativas melhores</div><div class="alt-box">${item.alternativas}</div></div>
           <a class="link-btn" href="${item.link}" target="_blank">🔗 Abrir link original</a>
         </div>
-      </div>
-    `;
+      </div>`;
     grid.appendChild(card);
     count++;
   });
-
-  if (count === 0) {
-    grid.innerHTML = '<div class="empty-state">Nenhum item encontrado para este filtro.</div>';
-  }
+  if (!count) grid.innerHTML = '<div class="empty-state">Nenhum item encontrado.</div>';
 }
 
-function toggleImpl(btn) {
+function toggle(btn) {
   btn.classList.toggle("open");
-  const impl = btn.nextElementSibling;
-  impl.classList.toggle("show");
+  btn.nextElementSibling.classList.toggle("show");
 }
 
-buildFilters();
-buildSummary();
-renderCards();
+buildFilters(); buildSummary(); renderCards();
 </script>
 </body>
 </html>
